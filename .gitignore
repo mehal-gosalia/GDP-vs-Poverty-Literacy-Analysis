@@ -1,0 +1,11 @@
+# Python virtual environment
+.venv/
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+
+# Optional: ignore processed files if they are large
+# data/processed/*.csv
