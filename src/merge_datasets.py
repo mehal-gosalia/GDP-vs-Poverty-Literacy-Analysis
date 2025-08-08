@@ -37,7 +37,14 @@ if __name__ == "__main__":
     
     # Filter for years 2000–2023
     panel = panel[(panel["year"] >= 2000) & (panel["year"] <= 2023)]
-    
+
+    # Convert year to integer so Tableau reads it correctly
+    panel["year"] = panel["year"].astype(int)
+
+    # (Optional) Remove aggregate regions like "High income", "Arab World"
+    exclude_codes = ["HIC", "LIC", "LMC", "UMC", "EAS", "EAP", "EMU", "EUU", "ARB", "WLD"]
+    panel = panel[~panel["Country Code"].isin(exclude_codes)]
+
     # Save
     out_path = PROC_DIR / "panel.csv"
     panel.to_csv(out_path, index=False)
